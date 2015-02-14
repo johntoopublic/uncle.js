@@ -1,4 +1,3 @@
-http://en.wikipedia.org/wiki/Bookmarklet
 [uncle.js](https://johntoopublic.github.io/uncle.js)
 ==========
 
