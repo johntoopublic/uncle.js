@@ -5,6 +5,42 @@
 var scripts = document.body.getElementsByTagName('script');
 document.body.removeChild(scripts[scripts.length - 1]);
 
+// Add textarea for custom CSS rules.
+var text = document.createElement('textarea');
+text.placeholder = 'Custom CSS';
+text.value = window.localStorage.getItem('uncle.js');
+text.style.background = '#ddd';
+text.style.bottom = '5px';
+text.style.color = '#000';
+text.style.display = 'none';
+text.style.fontSize = '10px';
+text.style.height = ' 50px';
+text.style.position = 'fixed';
+text.style.left = '5px';
+text.style.width = '200px';
+text.style.zIndex = '10000';
+document.body.appendChild(text);
+
+// Add updated style for applying rules.
+var css = document.createElement('style');
+css.innerHTML = text.value;
+document.body.appendChild(css);
+
+// Update CSS value on textarea change.
+text.addEventListener('keyup', function(e) {
+  e.stopPropagation();
+  var style = text.value;
+  css.innerHTML = style;
+  window.localStorage.setItem('uncle.js', style);
+});
+
+// Toggle CSS textarea on press of 'c'.
+document.body.addEventListener('keyup', function(e) {
+  if (e.keyCode == 67) {
+    text.style.display = text.style.display == 'none' ? 'block' : 'none';
+  }
+});
+
 // Set body variables for scrolling over current content.
 document.body['data-title'] = document.title;
 document.body['data-url'] = location.href;
